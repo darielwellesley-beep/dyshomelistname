@@ -264,20 +264,16 @@
         // รูปโปรไฟล์ที่ต้องการใช้กับทุกคน
         const defaultImg = "https://img2.pic.in.th/a479b75c-4908-4b85-82ea-92707086f4cf.png";
 
-        // --- SVG Icons (แก้ไขใหม่เป็น Base64 เพื่อแก้ปัญหารูปไม่ขึ้น) ---
+        // --- SVG Icons (Base64) ---
         const rankIcons = {
-            // Founder: มงกุฎสีทอง
             'founder': 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI0ZGRDcwMCI+PHBhdGggZD0iTTUgMTZMMyA1TDguNSAxMEwxMiA0TDE1LjUgMTBMMjEgNUwxOSAxNkg1TTE5IDE4SDVWMTlIMTlWMThaIi8+PC9zdmc+',
-            // Lead: ดาวสีแดง
             'lead': 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI0ZGMDAwMCI+PHBhdGggZD0iTTEyIDE3LjI3TDE4LjE4IDIxTDE2LjU0IDEzLjk3TDIyIDkuMjRMMTQuODEgOC42MkwxMiAyTDkuMTkgOC42MkwyIDkuMjRMNy40NSAxMy45N0w1LjgyIDIxTDEyIDE3LjI3WiIvPjwvc3ZnPg==',
-            // Member: คนสีม่วง
             'member': 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI0JGNDBCRiI+PHBhdGggZD0iTTEyIDEyQzE0LjIxIDEyIDE2IDEwLjIxIDE2IDhDMTYgNS43OSAxNC4yMSA0IDEyIDRDOS43OSA0IDggNS43OSA4IDhDOCAxMC4yMSA5Ljc5IDEyIDEyIDEyTTEyIDE0QzkuMzMgMTQgNCAxNS4zNCA0IDE4VjIwSDIwVjE4QzIwIDE1LjM0IDE0LjY3IDE0IDEyIDE0WiIvPjwvc3ZnPg=='
         };
 
         // --- กำหนดรายชื่อสำหรับยศพิเศษ ---
         const founderName = "Nixeny Dernyoungsay";
         
-        // รายชื่อ Lead (ต้องสะกดให้ตรงกับข้อมูลใน members)
         const leadNames = [
             "Tail Dernyoungsay",
             "Day Dernyoungsay",
@@ -286,46 +282,40 @@
             "Real Dernyoungsay"
         ];
 
-        // --- ส่วนที่ 1: ข้อมูลสมาชิกทั้งหมด ---
+        // --- ส่วนที่ 1: ข้อมูลสมาชิกทั้งหมด (ใส่ลำดับยังไงก็ได้ เดี๋ยวโปรแกรมจัดให้) ---
         let members = [
             { name: "Nixeny Dernyoungsay", link: "https://www.facebook.com/nixeny.dernyoungsay" },
-            { name: "Tail Dernyoungsay", link: "https://www.facebook.com/tail.kodomo" },
-            { name: "Fatez Dernyoungsay", link: "https://www.facebook.com/fatez.dernyongsay" },
             { name: "Boom Dernyoungsay", link: "https://www.facebook.com/boom.dernyoungsay" },
-            { name: "Day Dernyoungsay", link: "https://www.facebook.com/day.dernyoungsay" },
-            // --- คนที่ 6 ขึ้นไป ---
+            { name: "Tail Dernyoungsay", link: "https://www.facebook.com/tail.kodomo" },
             { name: "Jxlly Dernyoungsay", link: "https://www.facebook.com/jxlly.dernyoungsay" },
+            { name: "Fatez Dernyoungsay", link: "https://www.facebook.com/fatez.dernyongsay" },
+            { name: "Day Dernyoungsay", link: "https://www.facebook.com/day.dernyoungsay" },
             { name: "Porsch Dernyoungsay", link: "https://www.facebook.com/porsch.dernyoungsay" },
             { name: "Medsigx Dernyoungsay", link: "https://www.facebook.com/Medsigx" },
             { name: "Ganz Dernyoungsay", link: "https://www.facebook.com/Ganzdys" },
             { name: "Min Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583563406342" },
             { name: "Bacon Dernyoungsay", link: "https://www.facebook.com/bacon.dernyoungsay" },
-            // --- คนที่ 10 ขึ้นไป ---
             { name: "Seefour Dernyoungsay", link: "https://www.facebook.com/seefour.dernyoungsay" },
             { name: "Painx Dernyoungsay", link: "https://www.facebook.com/painfui.dernyoungsay" },
             { name: "Icey Dernyoungsay", link: "https://www.facebook.com/Alpha.Wellesley" },
-            // --- คนที่ 15 ขึ้นไป ---
             { name: "Baycon Dernyoungsay", link: "https://www.facebook.com/baycon.elfuego" },
             { name: "Sim Dernyoungsay", link: "https://www.facebook.com/sim.xers" },
             { name: "Gxni Dernyoungsay", link: "https://www.facebook.com/gxni.uzi" },
             { name: "Combo Dernyoungsay", link: "https://www.facebook.com/combo.dernyoungsay" },
             { name: "Real Dernyoungsay", link: "https://www.facebook.com/real.dernyoungsay.993545" },
             { name: "Kyler Dernyoungsay", link: "https://www.facebook.com/kyler.ghett" },
-            // --- คนที่ 20 ขึ้นไป ---
             { name: "Cevo Dernyoungsay", link: "https://www.facebook.com/cevo.mommam" },
             { name: "Songsu Dernyoungsay", link: "https://www.facebook.com/sxngsxdys" },
             { name: "Coos Dernyoungsay", link: "https://www.facebook.com/coos.bestpart" },
             { name: "Peddzy Dernyoungsay", link: "https://www.facebook.com/peddzyy" },
             { name: "Zen Dernyoungsay", link: "https://www.facebook.com/Zenwasd" },
             { name: "Kyler Dernyoungsay", link: "https://www.facebook.com/real.justcry" }, 
-            // --- คนที่ 25 ขึ้นไป ---
             { name: "Bangto Dernyoungsay", link: "https://www.facebook.com/hhs.haha.90" },
             { name: "Oscar Dernyoungsay", link: "https://www.facebook.com/ziggado.dereck" },
             { name: "Kung Dernyoungsay", link: "https://www.facebook.com/snow.dernyoungsay" },
             { name: "Ronx Dernyoungsay", link: "https://www.facebook.com/rxnnylesbr" },
             { name: "Jacob Dernyoungsay", link: "https://www.facebook.com/JacobLaurenn" },
             { name: "Est Dernyoungsay", link: "https://www.facebook.com/est.wellesley" },
-            // --- คนที่ 30 ขึ้นไป ---
             { name: "Interneptq Dernyoungsay", link: "https://www.facebook.com/Interneptq1" },
             { name: "Jimmy Dernyoungsay", link: "https://www.facebook.com/banchamek.banchamek.banchamek.2025" },
             { name: "Han Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583018188887" },
@@ -340,20 +330,31 @@
         // --- ฟังก์ชันสำหรับตรวจสอบและกำหนดยศ ---
         function assignRanks(membersList) {
             return membersList.map(member => {
-                let rank = 'member'; // ค่าเริ่มต้นคือ Member (คนสีม่วง)
+                let rank = 'member'; // ค่าเริ่มต้นคือ Member
 
                 if (member.name === founderName) {
-                    rank = 'founder'; // มงกุฎ
+                    rank = 'founder'; 
                 } else if (leadNames.includes(member.name)) {
-                    rank = 'lead'; // ดาว
+                    rank = 'lead';
                 }
 
                 return { ...member, rank: rank };
             });
         }
 
-        // เริ่มต้นกำหนดยศ
+        // 1. กำหนดยศให้สมาชิกทุกคน
         members = assignRanks(members);
+
+        // 2. จัดเรียงลำดับ (Sorting) : Founder -> Lead -> Member
+        const rankPriority = {
+            'founder': 1,
+            'lead': 2,
+            'member': 3
+        };
+
+        members.sort((a, b) => {
+            return rankPriority[a.rank] - rankPriority[b.rank];
+        });
 
 
         // --- ตั้งค่าระบบแบ่งหน้า ---
@@ -377,7 +378,6 @@
                 card.target = "_blank";
                 
                 const imgSrc = member.img ? member.img : defaultImg;
-                // ดึงรูปไอคอนตามยศ
                 const rankImgSrc = rankIcons[member.rank];
 
                 card.innerHTML = `
