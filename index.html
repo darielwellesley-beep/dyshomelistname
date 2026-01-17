@@ -138,8 +138,9 @@
             height: 50px;
             border-radius: 50%;
             border: 2px solid #333;
-            object-fit: cover; /* หรือ scale-down ถ้าเป็นโลโก้ */
-            background: #000;
+            object-fit: scale-down; /* ปรับให้เห็นโลโก้เต็มใบ */
+            background: #fff; /* พื้นหลังขาวเพื่อให้โลโก้เด่น */
+            padding: 2px;
         }
 
         .info-text {
@@ -243,88 +244,84 @@
     </div>
 
     <script>
-        // --- ส่วนที่ 1: ข้อมูลสมาชิก (เพิ่มรายชื่อตรงนี้!) ---
-        // วิธีเพิ่ม: ก๊อปปี้บรรทัดที่มีปีกกา { ... }, แล้ววางต่อท้าย
-        // อย่าลืมใส่เครื่องหมายจุลภาค (,) คั่นระหว่างคนด้วยนะครับ
-        // ใส่ลิงก์รูปตรง "img": "..." ถ้าไม่มีให้ใส่ "" ว่างไว้
-        
+        // รูปโปรไฟล์ที่ต้องการใช้กับทุกคน
+        const defaultImg = "https://img2.pic.in.th/a479b75c-4908-4b85-82ea-92707086f4cf.png";
+
+        // --- ส่วนที่ 1: ข้อมูลสมาชิก ---
         const members = [
-            { name: "Tail Dernyoungsay", link: "https://www.facebook.com/tail.kodomo", img: "https://via.placeholder.com/150" },
-            { name: "Nixeny Dernyoungsay", link: "https://www.facebook.com/nixeny.dernyoungsay", img: "https://via.placeholder.com/150" },
-            { name: "Fatez Dernyoungsay", link: "https://www.facebook.com/fatez.dernyongsay", img: "https://via.placeholder.com/150" },
-            { name: "Boom Dernyoungsay", link: "https://www.facebook.com/boom.dernyoungsay", img: "https://via.placeholder.com/150" },
-            { name: "Day Dernyoungsay", link: "https://www.facebook.com/day.dernyoungsay", img: "https://via.placeholder.com/150" },
-            // --- คนที่ 6 ขึ้นไป (จะไปอยู่หน้า 2 อัตโนมัติ) ---
-            { name: "Jxlly Dernyoungsay", link: "https://www.facebook.com/jxlly.dernyoungsay", img: "https://via.placeholder.com/150" },
-            { name: "Porsch Dernyoungsay", link: "https://www.facebook.com/porsch.dernyoungsay", img: "https://via.placeholder.com/150" },
-            { name: "Medsigx Dernyoungsay", link: "https://www.facebook.com/Medsigx", img: "https://via.placeholder.com/150" },
-            { name: "Ganz Dernyoungsay", link: "https://www.facebook.com/Ganzdys", img: "https://via.placeholder.com/150" },
-            { name: "Min Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583563406342", img: "https://via.placeholder.com/150" },
-            { name: "Bacon Dernyoungsay", link: "https://www.facebook.com/bacon.dernyoungsay", img: "https://via.placeholder.com/150" },
-            // --- คนที่ 10 ขึ้นไป (จะไปอยู่หน้า 3 อัตโนมัติ) ---
-            { name: "Seefour Dernyoungsay", link: "https://www.facebook.com/seefour.dernyoungsay", img: "https://via.placeholder.com/150" },
-            { name: "Painx Dernyoungsay", link: "https://www.facebook.com/painfui.dernyoungsay", img: "https://via.placeholder.com/150" },
-            { name: "Icey Dernyoungsay", link: "https://www.facebook.com/Alpha.Wellesley", img: "https://via.placeholder.com/150" },
-            { name: "Ganz Dernyoungsay", link: "https://www.facebook.com/Ganzdys", img: "https://via.placeholder.com/150" },
-            { name: "Min Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583563406342", img: "https://via.placeholder.com/150" },
-            { name: "Bacon Dernyoungsay", link: "https://www.facebook.com/bacon.dernyoungsay", img: "https://via.placeholder.com/150" },
-            // --- คนที่ 15 ขึ้นไป (จะไปอยู่หน้า 4 อัตโนมัติ) ---
-            { name: "Baycon Dernyoungsay", link: "https://www.facebook.com/baycon.elfuego", img: "https://via.placeholder.com/150" },
-            { name: "Sim Dernyoungsay", link: "https://www.facebook.com/sim.xers", img: "https://via.placeholder.com/150" },
-            { name: "Gxni Dernyoungsay", link: "https://www.facebook.com/gxni.uzi", img: "https://via.placeholder.com/150" },
-            { name: "Combo Dernyoungsay", link: "https://www.facebook.com/combo.dernyoungsay", img: "https://via.placeholder.com/150" },
-            { name: "Real Dernyoungsay", link: "https://www.facebook.com/real.dernyoungsay.993545", img: "https://via.placeholder.com/150" },
-            { name: "Kyler Dernyoungsay", link: "https://www.facebook.com/kyler.ghett", img: "https://via.placeholder.com/150" },
-            // --- คนที่ 20 ขึ้นไป (จะไปอยู่หน้า 5 อัตโนมัติ) ---
-            { name: "Cevo Dernyoungsay", link: "https://www.facebook.com/cevo.mommam", img: "https://via.placeholder.com/150" },
-            { name: "Songsu Dernyoungsay", link: "https://www.facebook.com/sxngsxdys", img: "https://via.placeholder.com/150" },
-            { name: "Coos Dernyoungsay", link: "https://www.facebook.com/coos.bestpart", img: "https://via.placeholder.com/150" },
-            { name: "Peddzy Dernyoungsay", link: "https://www.facebook.com/peddzyy", img: "https://via.placeholder.com/150" },
-            { name: "Zeen Dernyoungsay", link: "https://www.facebook.com/Zenwasd", img: "https://via.placeholder.com/150" },
-            { name: "Kyler Dernyoungsay", link: "https://www.facebook.com/real.justcry", img: "https://via.placeholder.com/150" },
-            // --- คนที่ 25 ขึ้นไป (จะไปอยู่หน้า 6 อัตโนมัติ) ---
-            { name: "Bangto Dernyoungsay", link: "https://www.facebook.com/hhs.haha.90", img: "https://via.placeholder.com/150" },
-            { name: "Oscar Dernyoungsay", link: "https://www.facebook.com/ziggado.dereck", img: "https://via.placeholder.com/150" },
-            { name: "Kung Dernyoungsay", link: "https://www.facebook.com/snow.dernyoungsay", img: "https://via.placeholder.com/150" },
-            { name: "Ronx Dernyoungsay", link: "https://www.facebook.com/rxnnylesbr", img: "https://via.placeholder.com/150" },
-            { name: "Jacob Dernyoungsay", link: "https://www.facebook.com/JacobLaurenn", img: "https://via.placeholder.com/150" },
-            { name: "Est Dernyoungsay", link: "https://www.facebook.com/est.wellesley", img: "https://via.placeholder.com/150" },
-            // --- คนที่ 30 ขึ้นไป (จะไปอยู่หน้า 7 อัตโนมัติ) ---
-            { name: "Interneptq Dernyoungsay", link: "https://www.facebook.com/Interneptq1", img: "https://via.placeholder.com/150" },
-            { name: "Jimmy Dernyoungsay", link: "https://www.facebook.com/banchamek.banchamek.banchamek.2025", img: "https://via.placeholder.com/150" },
-            { name: "Kung Dernyoungsay", link: "https://www.facebook.com/snow.dernyoungsay", img: "https://via.placeholder.com/150" },
-            { name: "Han Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583018188887", img: "https://via.placeholder.com/150" },
-            { name: "Auan Dernyoungsay", link: "https://www.facebook.com/eithan.styleboy", img: "https://via.placeholder.com/150" },
-            { name: "Trafalgar Dernyoungsay", link: "https://www.facebook.com/TrafalgarWC", img: "https://via.placeholder.com/150" },
-            { name: "Wh݂ipcrꫀིྀa݁m ヽ", link: "https://www.facebook.com/profile.php?id=61585754639620", img: "https://via.placeholder.com/150" },
+            { name: "Tail Dernyoungsay", link: "https://www.facebook.com/tail.kodomo" },
+            { name: "Nixeny Dernyoungsay", link: "https://www.facebook.com/nixeny.dernyoungsay" },
+            { name: "Fatez Dernyoungsay", link: "https://www.facebook.com/fatez.dernyongsay" },
+            { name: "Boom Dernyoungsay", link: "https://www.facebook.com/boom.dernyoungsay" },
+            { name: "Day Dernyoungsay", link: "https://www.facebook.com/day.dernyoungsay" },
+            // --- คนที่ 6 ขึ้นไป ---
+            { name: "Jxlly Dernyoungsay", link: "https://www.facebook.com/jxlly.dernyoungsay" },
+            { name: "Porsch Dernyoungsay", link: "https://www.facebook.com/porsch.dernyoungsay" },
+            { name: "Medsigx Dernyoungsay", link: "https://www.facebook.com/Medsigx" },
+            { name: "Ganz Dernyoungsay", link: "https://www.facebook.com/Ganzdys" },
+            { name: "Min Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583563406342" },
+            { name: "Bacon Dernyoungsay", link: "https://www.facebook.com/bacon.dernyoungsay" },
+            // --- คนที่ 10 ขึ้นไป ---
+            { name: "Seefour Dernyoungsay", link: "https://www.facebook.com/seefour.dernyoungsay" },
+            { name: "Painx Dernyoungsay", link: "https://www.facebook.com/painfui.dernyoungsay" },
+            { name: "Icey Dernyoungsay", link: "https://www.facebook.com/Alpha.Wellesley" },
+            { name: "Ganz Dernyoungsay", link: "https://www.facebook.com/Ganzdys" },
+            { name: "Min Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583563406342" },
+            { name: "Bacon Dernyoungsay", link: "https://www.facebook.com/bacon.dernyoungsay" },
+            // --- คนที่ 15 ขึ้นไป ---
+            { name: "Baycon Dernyoungsay", link: "https://www.facebook.com/baycon.elfuego" },
+            { name: "Sim Dernyoungsay", link: "https://www.facebook.com/sim.xers" },
+            { name: "Gxni Dernyoungsay", link: "https://www.facebook.com/gxni.uzi" },
+            { name: "Combo Dernyoungsay", link: "https://www.facebook.com/combo.dernyoungsay" },
+            { name: "Real Dernyoungsay", link: "https://www.facebook.com/real.dernyoungsay.993545" },
+            { name: "Kyler Dernyoungsay", link: "https://www.facebook.com/kyler.ghett" },
+            // --- คนที่ 20 ขึ้นไป ---
+            { name: "Cevo Dernyoungsay", link: "https://www.facebook.com/cevo.mommam" },
+            { name: "Songsu Dernyoungsay", link: "https://www.facebook.com/sxngsxdys" },
+            { name: "Coos Dernyoungsay", link: "https://www.facebook.com/coos.bestpart" },
+            { name: "Peddzy Dernyoungsay", link: "https://www.facebook.com/peddzyy" },
+            { name: "Zeen Dernyoungsay", link: "https://www.facebook.com/Zenwasd" },
+            { name: "Kyler Dernyoungsay", link: "https://www.facebook.com/real.justcry" },
+            // --- คนที่ 25 ขึ้นไป ---
+            { name: "Bangto Dernyoungsay", link: "https://www.facebook.com/hhs.haha.90" },
+            { name: "Oscar Dernyoungsay", link: "https://www.facebook.com/ziggado.dereck" },
+            { name: "Kung Dernyoungsay", link: "https://www.facebook.com/snow.dernyoungsay" },
+            { name: "Ronx Dernyoungsay", link: "https://www.facebook.com/rxnnylesbr" },
+            { name: "Jacob Dernyoungsay", link: "https://www.facebook.com/JacobLaurenn" },
+            { name: "Est Dernyoungsay", link: "https://www.facebook.com/est.wellesley" },
+            // --- คนที่ 30 ขึ้นไป ---
+            { name: "Interneptq Dernyoungsay", link: "https://www.facebook.com/Interneptq1" },
+            { name: "Jimmy Dernyoungsay", link: "https://www.facebook.com/banchamek.banchamek.banchamek.2025" },
+            { name: "Kung Dernyoungsay", link: "https://www.facebook.com/snow.dernyoungsay" },
+            { name: "Han Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583018188887" },
+            { name: "Auan Dernyoungsay", link: "https://www.facebook.com/eithan.styleboy" },
+            { name: "Trafalgar Dernyoungsay", link: "https://www.facebook.com/TrafalgarWC" },
+            { name: "Wh݂ipcrꫀིྀa݁m ヽ", link: "https://www.facebook.com/profile.php?id=61585754639620" },
         ];
 
         // --- ตั้งค่าระบบแบ่งหน้า ---
-        const itemsPerPage = 5; // จำนวนคนต่อหน้า
+        const itemsPerPage = 5; 
         let currentPage = 1;
-        let filteredMembers = [...members]; // เก็บรายชื่อที่ผ่านการค้นหา
+        let filteredMembers = [...members]; 
 
         // --- ฟังก์ชันแสดงผล ---
         function renderList() {
             const listContainer = document.getElementById('listContainer');
-            listContainer.innerHTML = ""; // ล้างข้อมูลเก่า
+            listContainer.innerHTML = ""; 
 
-            // คำนวณ Index เริ่มต้นและสิ้นสุดของหน้านั้น
             const start = (currentPage - 1) * itemsPerPage;
             const end = start + itemsPerPage;
             const pageItems = filteredMembers.slice(start, end);
 
-            // วนลูปสร้างการ์ด HTML
             pageItems.forEach(member => {
                 const card = document.createElement('a');
                 card.className = 'member-card';
                 card.href = member.link;
                 card.target = "_blank";
                 
-                // ใช้รูปที่กำหนด ถ้าไม่มีใช้รูป default
-                const imgSrc = member.img ? member.img : "https://via.placeholder.com/150";
+                // ใช้รูปที่กำหนดเป็นค่า Default ให้ทุกคน
+                const imgSrc = member.img ? member.img : defaultImg;
 
-                // HTML ภายในการ์ด
                 card.innerHTML = `
                     <div class="card-left">
                         <img src="${imgSrc}" class="profile-pic" alt="Profile">
@@ -365,7 +362,7 @@
                 m.name.toLowerCase().includes(text) || 
                 m.link.toLowerCase().includes(text)
             );
-            currentPage = 1; // รีเซ็ตไปหน้าแรกเวลาค้นหา
+            currentPage = 1; 
             renderList();
         });
 
