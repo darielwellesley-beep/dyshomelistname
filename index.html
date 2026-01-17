@@ -158,9 +158,10 @@
 
         /* ไอคอนยศ */
         .rank-icon {
-            width: 20px;
-            height: 20px;
+            width: 22px; /* ปรับขนาดให้เห็นชัดขึ้นเล็กน้อย */
+            height: 22px;
             object-fit: contain;
+            filter: drop-shadow(0 0 2px rgba(255,255,255,0.3)); /* เพิ่มเงาเล็กน้อยให้ดูมีมิติ */
         }
 
         .name {
@@ -226,7 +227,7 @@
         @media (max-width: 600px) {
             .member-card { padding: 10px 15px; border-radius: 15px; }
             .profile-pic { width: 40px; height: 40px; }
-            .rank-icon { width: 16px; height: 16px; } /* ปรับขนาดยศในมือถือ */
+            .rank-icon { width: 18px; height: 18px; } /* ปรับขนาดยศในมือถือ */
             .name { font-size: 0.9rem; }
             .link-text { font-size: 0.7rem; }
             .fb-icon { width: 30px; height: 30px; font-size: 1rem; }
@@ -263,11 +264,15 @@
         // รูปโปรไฟล์ที่ต้องการใช้กับทุกคน
         const defaultImg = "https://img2.pic.in.th/a479b75c-4908-4b85-82ea-92707086f4cf.png";
 
-        // --- กำหนด Path ของรูปภาพยศ (*** ตรวจสอบให้แน่ใจว่าไฟล์เหล่านี้มีอยู่จริงในโฟลเดอร์เดียวกัน ***) ---
+        // --- แก้ไข: ใช้ SVG Data URI แทนไฟล์รูปภาพ เพื่อให้แสดงผลได้ทันทีโดยไม่ต้องมีไฟล์แยก ---
+        // ออกแบบใหม่: มงกุฎ(ทอง), ดาว(แดง), คน(ม่วง) แบบไม่มีกรอบ
         const rankIcons = {
-            'founder': 'image_1.png', // รูปมงกุฎสีทอง
-            'lead': 'image_2.png',    // รูปดาวสีแดง
-            'member': 'image_2.png'   // รูปดาวสีแดง (ใช้เหมือน Lead ตามที่แจ้ง)
+            // Founder: มงกุฎสีทอง
+            'founder': `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700"><path d="M5 16L3 5L8.5 10L12 4L15.5 10L21 5L19 16H5M19 18H5V19H19V18Z"/></svg>`,
+            // Lead: ดาวสีแดง
+            'lead': `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FF3D00"><path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.62L12 2L9.19 8.62L2 9.24L7.45 13.97L5.82 21L12 17.27Z"/></svg>`,
+            // Member: คนสีม่วง
+            'member': `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23D500F9"><path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12M12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/></svg>`
         };
 
         // --- รายชื่อสำหรับกำหนดยศ ---
@@ -300,8 +305,6 @@
             { name: "Seefour Dernyoungsay", link: "https://www.facebook.com/seefour.dernyoungsay" },
             { name: "Painx Dernyoungsay", link: "https://www.facebook.com/painfui.dernyoungsay" },
             { name: "Icey Dernyoungsay", link: "https://www.facebook.com/Alpha.Wellesley" },
-            // { name: "Ganz Dernyoungsay", link: "https://www.facebook.com/Ganzdys" }, // ซ้ำ ตัดออก
-            // { name: "Min Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583563406342" }, // ซ้ำ ตัดออก
             // --- คนที่ 15 ขึ้นไป ---
             { name: "Baycon Dernyoungsay", link: "https://www.facebook.com/baycon.elfuego" },
             { name: "Sim Dernyoungsay", link: "https://www.facebook.com/sim.xers" },
@@ -315,7 +318,7 @@
             { name: "Coos Dernyoungsay", link: "https://www.facebook.com/coos.bestpart" },
             { name: "Peddzy Dernyoungsay", link: "https://www.facebook.com/peddzyy" },
             { name: "Zen Dernyoungsay", link: "https://www.facebook.com/Zenwasd" },
-            { name: "Kyler Dernyoungsay", link: "https://www.facebook.com/real.justcry" }, // Kyler ซ้ำ แต่คนละ Link เก็บไว้
+            { name: "Kyler Dernyoungsay", link: "https://www.facebook.com/real.justcry" }, 
             // --- คนที่ 25 ขึ้นไป ---
             { name: "Bangto Dernyoungsay", link: "https://www.facebook.com/hhs.haha.90" },
             { name: "Oscar Dernyoungsay", link: "https://www.facebook.com/ziggado.dereck" },
@@ -326,7 +329,6 @@
             // --- คนที่ 30 ขึ้นไป ---
             { name: "Interneptq Dernyoungsay", link: "https://www.facebook.com/Interneptq1" },
             { name: "Jimmy Dernyoungsay", link: "https://www.facebook.com/banchamek.banchamek.banchamek.2025" },
-            // { name: "Kung Dernyoungsay", link: "https://www.facebook.com/snow.dernyoungsay" }, // ซ้ำ ตัดออก
             { name: "Han Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583018188887" },
             { name: "Auan Dernyoungsay", link: "https://www.facebook.com/eithan.styleboy" },
             { name: "Trafalgar Dernyoungsay", link: "https://www.facebook.com/TrafalgarWC" },
