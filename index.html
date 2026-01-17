@@ -264,12 +264,14 @@
         // รูปโปรไฟล์ที่ต้องการใช้กับทุกคน
         const defaultImg = "https://img2.pic.in.th/a479b75c-4908-4b85-82ea-92707086f4cf.png";
 
-        // --- SVG Icons (ไม่ต้องใช้ไฟล์รูปภาพแยก) ---
-        // Founder = มงกุฎสีทอง, Lead = ดาวสีแดง, Member = คนสีม่วง
+        // --- SVG Icons (แก้ไขใหม่เป็น Base64 เพื่อแก้ปัญหารูปไม่ขึ้น) ---
         const rankIcons = {
-            'founder': `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700"><path d="M5 16L3 5L8.5 10L12 4L15.5 10L21 5L19 16H5M19 18H5V19H19V18Z"/></svg>`,
-            'lead': `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FF0000"><path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.62L12 2L9.19 8.62L2 9.24L7.45 13.97L5.82 21L12 17.27Z"/></svg>`,
-            'member': `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23BF40BF"><path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12M12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/></svg>`
+            // Founder: มงกุฎสีทอง
+            'founder': 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI0ZGRDcwMCI+PHBhdGggZD0iTTUgMTZMMyA1TDguNSAxMEwxMiA0TDE1LjUgMTBMMjEgNUwxOSAxNkg1TTE5IDE4SDVWMTlIMTlWMThaIi8+PC9zdmc+',
+            // Lead: ดาวสีแดง
+            'lead': 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI0ZGMDAwMCI+PHBhdGggZD0iTTEyIDE3LjI3TDE4LjE4IDIxTDE2LjU0IDEzLjk3TDIyIDkuMjRMMTQuODEgOC42MkwxMiAyTDkuMTkgOC42MkwyIDkuMjRMNy40NSAxMy45N0w1LjgyIDIxTDEyIDE3LjI3WiIvPjwvc3ZnPg==',
+            // Member: คนสีม่วง
+            'member': 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI0JGNDBCRiI+PHBhdGggZD0iTTEyIDEyQzE0LjIxIDEyIDE2IDEwLjIxIDE2IDhDMTYgNS43OSAxNC4yMSA0IDEyIDRDOS43OSA0IDggNS43OSA4IDhDOCAxMC4yMSA5Ljc5IDEyIDEyIDEyTTEyIDE0QzkuMzMgMTQgNCAxNS4zNCA0IDE4VjIwSDIwVjE4QzIwIDE1LjM0IDE0LjY3IDE0IDEyIDE0WiIvPjwvc3ZnPg=='
         };
 
         // --- กำหนดรายชื่อสำหรับยศพิเศษ ---
