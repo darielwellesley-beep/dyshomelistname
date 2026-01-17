@@ -72,7 +72,7 @@
             font-size: 2.5rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         /* --- Search Box --- */
@@ -146,6 +146,21 @@
         .info-text {
             display: flex;
             flex-direction: column;
+            gap: 5px; /* ระยะห่างระหว่างบรรทัดชื่อกับลิงก์ */
+        }
+
+        /* Container สำหรับชื่อและไอคอนยศ */
+        .name-container {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* ระยะห่างระหว่างไอคอนยศกับชื่อ */
+        }
+
+        /* ไอคอนยศ */
+        .rank-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
         }
 
         .name {
@@ -211,6 +226,7 @@
         @media (max-width: 600px) {
             .member-card { padding: 10px 15px; border-radius: 15px; }
             .profile-pic { width: 40px; height: 40px; }
+            .rank-icon { width: 16px; height: 16px; } /* ปรับขนาดยศในมือถือ */
             .name { font-size: 0.9rem; }
             .link-text { font-size: 0.7rem; }
             .fb-icon { width: 30px; height: 30px; font-size: 1rem; }
@@ -247,10 +263,29 @@
         // รูปโปรไฟล์ที่ต้องการใช้กับทุกคน
         const defaultImg = "https://img2.pic.in.th/a479b75c-4908-4b85-82ea-92707086f4cf.png";
 
+        // --- กำหนด Path ของรูปภาพยศ (*** ตรวจสอบให้แน่ใจว่าไฟล์เหล่านี้มีอยู่จริงในโฟลเดอร์เดียวกัน ***) ---
+        const rankIcons = {
+            'founder': 'image_1.png', // รูปมงกุฎสีทอง
+            'lead': 'image_2.png',    // รูปดาวสีแดง
+            'member': 'image_2.png'   // รูปดาวสีแดง (ใช้เหมือน Lead ตามที่แจ้ง)
+        };
+
+        // --- รายชื่อสำหรับกำหนดยศ ---
+        const founderName = "Nixeny Dernyoungsay";
+        // ใช้ Set เพื่อการค้นหาที่รวดเร็ว (ใส่ชื่อเต็มตามที่ปรากฏในข้อมูลสมาชิก)
+        const leadNames = new Set([
+            "Tail Dernyoungsay",
+            "Day Dernyoungsay",
+            "Fatez Dernyoungsay",
+            "Seefour Dernyoungsay",
+            "Real Dernyoungsay"
+        ]);
+
+
         // --- ส่วนที่ 1: ข้อมูลสมาชิก ---
-        const members = [
-            { name: "Tail Dernyoungsay", link: "https://www.facebook.com/tail.kodomo" },
+        let members = [
             { name: "Nixeny Dernyoungsay", link: "https://www.facebook.com/nixeny.dernyoungsay" },
+            { name: "Tail Dernyoungsay", link: "https://www.facebook.com/tail.kodomo" },
             { name: "Fatez Dernyoungsay", link: "https://www.facebook.com/fatez.dernyongsay" },
             { name: "Boom Dernyoungsay", link: "https://www.facebook.com/boom.dernyoungsay" },
             { name: "Day Dernyoungsay", link: "https://www.facebook.com/day.dernyoungsay" },
@@ -265,8 +300,8 @@
             { name: "Seefour Dernyoungsay", link: "https://www.facebook.com/seefour.dernyoungsay" },
             { name: "Painx Dernyoungsay", link: "https://www.facebook.com/painfui.dernyoungsay" },
             { name: "Icey Dernyoungsay", link: "https://www.facebook.com/Alpha.Wellesley" },
-            { name: "Ganz Dernyoungsay", link: "https://www.facebook.com/Ganzdys" },
-            { name: "Min Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583563406342" },
+            // { name: "Ganz Dernyoungsay", link: "https://www.facebook.com/Ganzdys" }, // ซ้ำ ตัดออก
+            // { name: "Min Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583563406342" }, // ซ้ำ ตัดออก
             // --- คนที่ 15 ขึ้นไป ---
             { name: "Baycon Dernyoungsay", link: "https://www.facebook.com/baycon.elfuego" },
             { name: "Sim Dernyoungsay", link: "https://www.facebook.com/sim.xers" },
@@ -280,7 +315,7 @@
             { name: "Coos Dernyoungsay", link: "https://www.facebook.com/coos.bestpart" },
             { name: "Peddzy Dernyoungsay", link: "https://www.facebook.com/peddzyy" },
             { name: "Zen Dernyoungsay", link: "https://www.facebook.com/Zenwasd" },
-            { name: "Kyler Dernyoungsay", link: "https://www.facebook.com/real.justcry" },
+            { name: "Kyler Dernyoungsay", link: "https://www.facebook.com/real.justcry" }, // Kyler ซ้ำ แต่คนละ Link เก็บไว้
             // --- คนที่ 25 ขึ้นไป ---
             { name: "Bangto Dernyoungsay", link: "https://www.facebook.com/hhs.haha.90" },
             { name: "Oscar Dernyoungsay", link: "https://www.facebook.com/ziggado.dereck" },
@@ -291,7 +326,7 @@
             // --- คนที่ 30 ขึ้นไป ---
             { name: "Interneptq Dernyoungsay", link: "https://www.facebook.com/Interneptq1" },
             { name: "Jimmy Dernyoungsay", link: "https://www.facebook.com/banchamek.banchamek.banchamek.2025" },
-            { name: "Kung Dernyoungsay", link: "https://www.facebook.com/snow.dernyoungsay" },
+            // { name: "Kung Dernyoungsay", link: "https://www.facebook.com/snow.dernyoungsay" }, // ซ้ำ ตัดออก
             { name: "Han Dernyoungsay", link: "https://www.facebook.com/profile.php?id=61583018188887" },
             { name: "Auan Dernyoungsay", link: "https://www.facebook.com/eithan.styleboy" },
             { name: "Trafalgar Dernyoungsay", link: "https://www.facebook.com/TrafalgarWC" },
@@ -300,6 +335,26 @@
             { name: "White Dernyoungsay ", link: "https://www.facebook.com/whitee.kodomo" },
             { name: "Uno Dernyoungsay ", link: "https://www.facebook.com/uno.kodomo" },
         ];
+
+        // --- ฟังก์ชันสำหรับกำหนดยศให้กับข้อมูลสมาชิก ---
+        function assignRanks(membersList) {
+            return membersList.map(member => {
+                let rank = 'member'; // ค่าเริ่มต้นคือ Member
+
+                if (member.name === founderName) {
+                    rank = 'founder';
+                } else if (leadNames.has(member.name)) {
+                    rank = 'lead';
+                }
+
+                // คืนค่า object สมาชิกเดิม + เพิ่ม property rank เข้าไป
+                return { ...member, rank: rank };
+            });
+        }
+
+        // อัปเดตข้อมูลสมาชิกด้วยการกำหนดยศ
+        members = assignRanks(members);
+
 
         // --- ตั้งค่าระบบแบ่งหน้า ---
         const itemsPerPage = 5; 
@@ -323,12 +378,18 @@
                 
                 // ใช้รูปที่กำหนดเป็นค่า Default ให้ทุกคน
                 const imgSrc = member.img ? member.img : defaultImg;
+                // ดึง Path ของรูปยศตาม rank ของสมาชิกคนนั้นๆ
+                const rankImgSrc = rankIcons[member.rank];
 
+                // --- แก้ไข HTML Template เพื่อเพิ่มไอคอนยศ ---
                 card.innerHTML = `
                     <div class="card-left">
                         <img src="${imgSrc}" class="profile-pic" alt="Profile">
                         <div class="info-text">
-                            <span class="name">${member.name}</span>
+                            <div class="name-container">
+                                <img src="${rankImgSrc}" class="rank-icon" alt="${member.rank}">
+                                <span class="name">${member.name}</span>
+                            </div>
                             <span class="link-text">${member.link.replace('https://', '')}</span>
                         </div>
                     </div>
