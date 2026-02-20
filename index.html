@@ -50,7 +50,6 @@
             text-align: center;
         }
 
-        /* ป้าย Logo ขาวขอบดำ */
         .logo-badge {
             background: #fff;
             border: 4px solid #000;
@@ -102,13 +101,13 @@
             width: 100%;
             max-width: 900px;
             padding: 0 20px;
-            flex-grow: 1; /* ดัน Footer ลงล่าง */
+            flex-grow: 1;
         }
 
-        /* --- Member Card (แนวนอนยาวๆ แบบในรูป) --- */
+        /* --- Member Card --- */
         .member-card {
             background: var(--card-bg);
-            border-radius: 50px; /* มนๆ เหมือนแคปซูล */
+            border-radius: 50px;
             padding: 10px 20px;
             margin-bottom: 15px;
             display: flex;
@@ -132,36 +131,33 @@
             gap: 20px;
         }
 
-        /* รูปวงกลมซ้ายมือ */
         .profile-pic {
             width: 50px;
             height: 50px;
             border-radius: 50%;
             border: 2px solid #333;
-            object-fit: scale-down; /* ปรับให้เห็นโลโก้เต็มใบ */
-            background: #fff; /* พื้นหลังขาวเพื่อให้โลโก้เด่น */
+            object-fit: scale-down;
+            background: #fff;
             padding: 2px;
         }
 
         .info-text {
             display: flex;
             flex-direction: column;
-            gap: 5px; /* ระยะห่างระหว่างบรรทัดชื่อกับลิงก์ */
+            gap: 5px;
         }
 
-        /* Container สำหรับชื่อและไอคอนยศ */
         .name-container {
             display: flex;
             align-items: center;
-            gap: 8px; /* ระยะห่างระหว่างไอคอนยศกับชื่อ */
+            gap: 8px;
         }
 
-        /* ไอคอนยศ */
         .rank-icon {
             width: 22px; 
             height: 22px;
             object-fit: contain;
-            filter: drop-shadow(0 0 2px rgba(255,255,255,0.3)); /* เพิ่มเงาเล็กน้อย */
+            filter: drop-shadow(0 0 2px rgba(255,255,255,0.3));
         }
 
         .name {
@@ -176,7 +172,6 @@
             color: var(--text-sub);
         }
 
-        /* ปุ่ม Facebook ขวาสุด */
         .fb-icon {
             width: 35px;
             height: 35px;
@@ -215,7 +210,6 @@
 
         .page-info { color: #888; }
 
-        /* Footer */
         .footer {
             margin-top: auto;
             padding: 20px;
@@ -223,11 +217,10 @@
             color: #444;
         }
 
-        /* Responsive */
         @media (max-width: 600px) {
             .member-card { padding: 10px 15px; border-radius: 15px; }
             .profile-pic { width: 40px; height: 40px; }
-            .rank-icon { width: 18px; height: 18px; } /* ปรับขนาดยศในมือถือ */
+            .rank-icon { width: 18px; height: 18px; }
             .name { font-size: 0.9rem; }
             .link-text { font-size: 0.7rem; }
             .fb-icon { width: 30px; height: 30px; font-size: 1rem; }
@@ -247,8 +240,7 @@
         <input type="text" id="searchInput" class="search-box" placeholder="ค้นหาชื่อสมาชิก...">
     </div>
 
-    <div class="list-container" id="listContainer">
-        </div>
+    <div class="list-container" id="listContainer"></div>
 
     <div class="pagination">
         <button class="page-btn" id="prevBtn" onclick="changePage(-1)">ก่อนหน้า</button>
@@ -261,19 +253,15 @@
     </div>
 
     <script>
-        // รูปโปรไฟล์ที่ต้องการใช้กับทุกคน
         const defaultImg = "https://img2.pic.in.th/a479b75c-4908-4b85-82ea-92707086f4cf.png";
 
-        // --- SVG Icons (Base64) ---
         const rankIcons = {
             'founder': 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI0ZGRDcwMCI+PHBhdGggZD0iTTUgMTZMMyA1TDguNSAxMEwxMiA0TDE1LjUgMTBMMjEgNUwxOSAxNkg1TTE5IDE4SDVWMTlIMTlWMThaIi8+PC9zdmc+',
             'lead': 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI0ZGMDAwMCI+PHBhdGggZD0iTTEyIDE3LjI3TDE4LjE4IDIxTDE2LjU0IDEzLjk3TDIyIDkuMjRMMTQuODEgOC42MkwxMiAyTDkuMTkgOC42MkwyIDkuMjRMNy40NSAxMy45N0w1LjgyIDIxTDEyIDE3LjI3WiIvPjwvc3ZnPg==',
             'member': 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI0JGNDBCRiI+PHBhdGggZD0iTTEyIDEyQzE0LjIxIDEyIDE2IDEwLjIxIDE2IDhDMTYgNS43OSAxNC4yMSA0IDEyIDRDOS43OSA0IDggNS43OSA4IDhDOCAxMC4yMSA5Ljc5IDEyIDEyIDEyTTEyIDE0QzkuMzMgMTQgNCAxNS4zNCA0IDE4VjIwSDIwVjE4QzIwIDE1LjM0IDE0LjY3IDE0IDEyIDE0WiIvPjwvc3ZnPg=='
         };
 
-        // --- กำหนดรายชื่อสำหรับยศพิเศษ ---
         const founderName = "Nixeny Dernyoungsay";
-        
         const leadNames = [
             "Tail Dernyoungsay",
             "Day Dernyoungsay",
@@ -282,7 +270,6 @@
             "Real Dernyoungsay"
         ];
 
-        // --- ส่วนที่ 1: ข้อมูลสมาชิกทั้งหมด (ใส่ลำดับยังไงก็ได้ เดี๋ยวโปรแกรมจัดให้) ---
         let members = [
             { name: "Nixeny Dernyoungsay", link: "https://www.facebook.com/nixeny.dernyoungsay" },
             { name: "Boom Dernyoungsay", link: "https://www.facebook.com/boom.dernyoungsay" },
@@ -325,44 +312,31 @@
             { name: "Oshi Dernyoungsay ", link: "https://www.facebook.com/ssssssz168" },
             { name: "White Dernyoungsay ", link: "https://www.facebook.com/whitee.kodomo" },
             { name: "Uno Dernyoungsay ", link: "https://www.facebook.com/uno.kodomo" },
+            { name: "Zigar Dernyoungsay", link: "https://www.facebook.com/zigar.Dereck.2024" }, // เพิ่มตรงนี้เรียบร้อยครับ
         ];
 
-        // --- ฟังก์ชันสำหรับตรวจสอบและกำหนดยศ ---
         function assignRanks(membersList) {
             return membersList.map(member => {
-                let rank = 'member'; // ค่าเริ่มต้นคือ Member
-
+                let rank = 'member';
                 if (member.name === founderName) {
                     rank = 'founder'; 
                 } else if (leadNames.includes(member.name)) {
                     rank = 'lead';
                 }
-
                 return { ...member, rank: rank };
             });
         }
 
-        // 1. กำหนดยศให้สมาชิกทุกคน
         members = assignRanks(members);
 
-        // 2. จัดเรียงลำดับ (Sorting) : Founder -> Lead -> Member
-        const rankPriority = {
-            'founder': 1,
-            'lead': 2,
-            'member': 3
-        };
+        const rankPriority = { 'founder': 1, 'lead': 2, 'member': 3 };
 
-        members.sort((a, b) => {
-            return rankPriority[a.rank] - rankPriority[b.rank];
-        });
+        members.sort((a, b) => rankPriority[a.rank] - rankPriority[b.rank]);
 
-
-        // --- ตั้งค่าระบบแบ่งหน้า ---
         const itemsPerPage = 5; 
         let currentPage = 1;
         let filteredMembers = [...members]; 
 
-        // --- ฟังก์ชันแสดงผล ---
         function renderList() {
             const listContainer = document.getElementById('listContainer');
             listContainer.innerHTML = ""; 
@@ -401,22 +375,18 @@
             updatePaginationControls();
         }
 
-        // --- อัปเดตปุ่มกดและเลขหน้า ---
         function updatePaginationControls() {
             const totalPages = Math.ceil(filteredMembers.length / itemsPerPage) || 1;
             document.getElementById('pageInfo').innerText = `หน้า ${currentPage} จาก ${totalPages}`;
-            
             document.getElementById('prevBtn').disabled = currentPage === 1;
             document.getElementById('nextBtn').disabled = currentPage === totalPages;
         }
 
-        // --- เปลี่ยนหน้า ---
         function changePage(direction) {
             currentPage += direction;
             renderList();
         }
 
-        // --- ระบบค้นหา ---
         document.getElementById('searchInput').addEventListener('keyup', (e) => {
             const text = e.target.value.toLowerCase();
             filteredMembers = members.filter(m => 
@@ -427,9 +397,7 @@
             renderList();
         });
 
-        // เริ่มต้นทำงาน
         renderList();
-
     </script>
 </body>
 </html>
